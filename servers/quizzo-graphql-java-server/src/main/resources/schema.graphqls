@@ -1,0 +1,106 @@
+type Quiz {
+  id: Int!
+  title: String!
+  description: String!
+  questions: [Question!]!
+}
+
+type Question {
+  text: String!
+  options: [ChoiceOption!]!
+}
+
+type ChoiceOption {
+  key: String!
+  label: String!
+}
+
+type Player {
+  nickName: String!
+}
+
+type User {
+  id: String!
+  roles: [String!]!
+}
+
+type SignInResponse {
+  user: User!
+  token: String!
+}
+
+input SignInCredentials {
+  userName: String!
+  password: String!
+}
+
+input NewUserData {
+  nickName: String!
+  email: String!
+  phone: String!
+}
+
+type PlayerScoreReportEntry {
+   gameTitle: String!
+   questionTitle: String
+   nickName: String!
+   score: Int!
+   answer: String
+   answerText: String
+}
+
+type PlayerFinalScore {
+   nickName: String!
+   score: Int!
+}
+
+type GameStatus {
+  gameMode: String!
+  timeLeft: Int
+  gameTitle: String
+  gameDescription: String
+  currentQuestion: Question
+  currentQuestionAnswered: Boolean
+  currentOptions: [ChoiceOption!]
+  questionScore: PlayerScoreReportEntry
+  finalScore: Int
+}
+
+type PanelGameStatus {
+  gameMode: String!
+  timeLeft: Int
+  gameTitle: String
+  gameDescription: String
+  currentQuestion: Question
+  currentQuestionAnswered: Boolean
+  currentOptions: [ChoiceOption!]
+  questionScores: [PlayerScoreReportEntry!]
+  finalScores: [PlayerFinalScore!]
+}
+type Query {
+  getQuizzes: [Quiz]
+  getQuiz(id: Int!): Quiz!
+  ping: Boolean!
+  me: String
+  roles: [String!]
+  gameStatus: GameStatus!
+  panelGameStatus: PanelGameStatus!
+}
+
+type Mutation {
+  registerPlayer(details: NewUserData): String!
+  registerModerator(id: String!): String!
+  registerAdmin(id: String): String!
+  login(credentials: SignInCredentials): String
+  selectGame(quizId: Int!): Boolean!
+  playerJoinCurrentGame: Boolean!
+  beginGamePlay: Boolean!
+  answerQuestion(answer: String!): Boolean!
+  endTurn: Boolean!
+  nextQuestion: Boolean!
+  reset: Boolean!
+}
+
+
+
+

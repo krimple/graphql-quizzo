@@ -1,0 +1,10 @@
+yarn run v1.12.3
+$ node src/index.js
+schemas:  {"typeDefs":"\n  type Query {\n    getQuizzes: [Quiz]\n  }\n\n  type Quiz {\n  \tid: Int!\n  \tname: String!,\n  \tquestions: [Question]\n  }\n\n  type Question {\n  \tid: Int!,\n  \ttext: String!,\n  \tchoices: [Choice!]\n  }\n\n  type Choice {\n  \t key: String!,\n  \t text: String!,\n  \t correct: Boolean!\n  }\n"}
+State: undefined
+Server is running on localhost:4000
+yarn run v1.12.3
+$ node --exec babel-node src/index.js
+/home/krimple/.nvm/versions/node/v11.4.0/bin/node: bad option: --exec
+error Command failed with exit code 9.
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.

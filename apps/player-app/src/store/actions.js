@@ -1,0 +1,11 @@
+export const ACTION_SIGN_ON_BEGIN = 'reducers/quizzo/actions/SIGN_ON_BEGIN';
+export const ACTION_SIGN_ON_SUCCESS = 'reducers/quizzo/actions/SIGN_ON_SUCCESS';
+export const ACTION_SIGN_ON_FAILURE = 'reducers/quizzo/actions/SIGN_ON_FAILURE';
+export const ACTION_ASSERT_JWT_TOKEN_EXISTS = 'reducres/quizzo/actions/ASSERT_JWT_TOKEN_EXISTS';
+export const ACTION_ASSERT_JWT_TOKEN_NOT_FOUND = 'reducres/quizzo/actions/ASSERT_JWT_TOKEN_NOT_FOUND';
+export const ACTION_JOIN_GAME_BEGIN = 'reducers/quizzo/actions/SIGN_ON_BEGIN';
+export const ACTION_JOIN_GAME_SUCCESS = 'reducers/quizzo/actions/JOIN_GAME_SUCCESS';
+export const ACTION_JOIN_GAME_FAILURE = 'reducers/quizzo/actions/JOIN_GAME_FAILURE';
+export const ACTION_POLL_FOR_GAME_STATUS_BEGUN = 'reducers/quizzo/actions/POLL_FOR_GAME_STATUS_BEGUN';
+export const ACTION_POLL_FOR_GAME_STATUS_COMPLETE = 'reducers/quizzo/actions/POLL_FOR_GAME_STATUS_COMPLETE';
+export const ACTION_GAME_STATUS_CHANGE = 'reducers/quizzo/actions/GAME_STATUS_CHANGE';

@@ -1,0 +1,65 @@
+@import 'variables';
+
+@import url('https://fonts.googleapis.com/css?family=Roboto|Rubik');
+@import '~bootstrap/scss/bootstrap';
+
+html, body {
+  height: 100%;
+}
+
+.jumbotron.vertical-center {
+  /* Remove the default bottom margin of .jumbotron */
+  // margin-bottom: 0;
+  background-color: #fff;
+}
+
+.jumbotron {
+  background-color: #fff;
+}
+
+.container-fluid {
+  padding-right: 0px;
+  padding-left: 0px;
+  border-radius: 0px;
+}
+
+.vertical-center {
+  min-height: 100%;
+  /* Make it a flex container */
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  /* Align the bootstrap's container vertically */
+  -webkit-box-align : center;
+  -webkit-align-items : center;
+  -moz-box-align : center;
+  -ms-flex-align : center;
+  align-items : center;
+
+  /* In legacy web browsers such as Firefox 9
+     we need to specify the width of the flex container */
+  width: 100%;
+
+  /* Also 'margin: 0 auto' doesn't have any effect on flex items in such web browsers
+     hence the bootstrap's container won't be aligned to the center anymore.
+
+     Therefore, we should use the following declarations to get it centered again */
+  -webkit-box-pack : center;
+  -moz-box-pack : center;
+  -ms-flex-pack : center;
+  -webkit-justify-content : center;
+  justify-content : center;
+}
+
+h1 {
+  font-size: 50px;
+  font-family: Helvetica;
+}
+
+h3 {
+  font-size: 30px;
+  font-family: Helvetica;
+}

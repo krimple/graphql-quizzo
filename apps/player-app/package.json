@@ -1,0 +1,57 @@
+{
+  "name": "conference-quiz-client-react",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "/player",
+  "proxy": "http://localhost:8080",
+  "dependencies": {
+    "@types/jest": "^24.0.11",
+    "@types/node": "^11.11.3",
+    "apollo-boost": "^0.1.28",
+    "apollo-cache-inmemory": "^1.4.3",
+    "apollo-client": "^2.4.13",
+    "apollo-link": "^1.2.8",
+    "apollo-link-context": "^1.0.14",
+    "apollo-link-error": "^1.1.7",
+    "apollo-link-http": "^1.5.11",
+    "apollo-link-ws": "^1.0.14",
+    "bootstrap": "^4.3.1",
+    "classnames": "^2.2.6",
+    "graphql": "^14.1.1",
+    "http-proxy-middleware": "^0.19.1",
+    "lodash": "^4.17.11",
+    "mini.css": "^3.0.1",
+    "react": "^16.8.6",
+    "react-apollo": "^2.4.1",
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.0.2",
+    "react-scripts": "2.1.8",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "rxjs": "^6.4.0",
+    "subscriptions-transport-ws": "^0.9.16",
+    "typescript": "^3.3.3333"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "startw": "react-scripts.cmd start",
+    "build": "react-scripts build",
+    "buildw": "react-scripts.cmd build",
+    "test": "react-scripts test",
+    "testw": "react-scripts.cmd test",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "node-sass": "^4.11.0"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

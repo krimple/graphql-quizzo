@@ -1,0 +1,42 @@
+FROM httpd:2.4.39
+
+RUN mkdir /usr/local/apache2/htdocs/player
+
+WORKDIR /usr/local/apache2/htdocs/player/
+
+RUN mkdir ./static
+
+RUN mkdir ./static/js
+
+RUN mkdir ./static/css
+
+# test COPY --from=playerimage /app/build ./
+
+COPY --from=playerimage /app/build/static/js ./static/js/
+
+COPY --from=playerimage /app/build/static/css ./static/css/
+
+COPY --from=playerimage /app/build/*.* ./
+
+run mkdir /usr/local/apache2/htdocs/moderator
+
+WORKDIR /usr/local/apache2/htdocs/moderator/
+
+RUN mkdir ./assets
+
+COPY --from=moderatorimage /app/dist/demo-angular/assets ./assets/
+
+COPY --from=moderatorimage /app/dist/demo-angular/*.* ./
+
+run mkdir /usr/local/apache2/htdocs/dashboard
+
+WORKDIR /usr/local/apache2/htdocs/dashboard/
+
+RUN mkdir ./assets
+
+# for now...
+# COPY --from=dashboardimage /app/dist/demo-angular/assets ./assets/
+
+COPY --from=dashboardimage /app/dist/demo-angular/ ./
+
+

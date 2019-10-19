@@ -1,0 +1,103 @@
+version: "3.7"
+
+services:
+  apache:
+    container_name: quizzo-apache
+    build:
+      context: ./apache/
+      dockerfile: Dockerfile-apache
+    volumes:
+      - ${CONFIG_DIR}/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
+      - ${CERTS_DIR}:/etc/ssl/crt:ro
+    networks:
+      - frontend
+    links:
+      - spring:spring
+    ports:
+      - 443:443
+      - 80:80
+    depends_on:
+      - player-app
+      - dashboard-app
+      - moderator-app
+      - spring
+
+  db:
+    image: postgres:11.2
+    restart: always
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    networks:
+      - backend
+    ports:
+      - "5432:5432"
+    volumes:
+      - type: volume
+        source: data
+        target: /var/lib/postgresql/data
+      - ${PG_BACKUP_DIR}:/var/lib/postgresql/backups
+
+  dbadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+    networks:
+      - backend
+      - frontend
+    ports:
+      - "8088:80"
+    depends_on:
+      - db
+
+  flyway:
+    image: boxfuse/flyway:6.0.0-beta
+    command: migrate -X -connectRetries=300
+    networks:
+      - backend
+    volumes:
+      - ./quizzo-db/migrations:/flyway/sql
+      - ./quizzo-db/flyway-conf:/flyway/conf
+    depends_on:
+      - db
+
+  spring:
+    image: "spring-container"
+    build: servers/quizzo-graphql-java-server
+    volumes:
+      - ${CONFIG_DIR}/spring:/etc/quizzo/spring
+    ports:
+      - "8080:8080"
+    networks:
+      - backend
+      - frontend
+    links:
+      - db:db
+    depends_on:
+      - db
+      - flyway
+
+  moderator-app:
+    image: moderatorimage
+    build:
+      context: ./apps/moderator-app
+
+  dashboard-app:
+    image: dashboardimage
+    build:
+      context: ./apps/dashboard-app
+
+  player-app:
+    image: playerimage
+    build:
+      context: ./apps/player-app
+
+volumes:
+  data:
+
+networks:
+  frontend:
+  backend:

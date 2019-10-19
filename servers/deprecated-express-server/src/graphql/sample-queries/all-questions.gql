@@ -1,0 +1,37 @@
+subscription NextMessage {
+        nextMessage {
+          ... on TurnOver {
+              winningPlayers {
+                nickName
+              }
+              leaderBoard {
+                 nickName
+                 finalScore
+              }
+          }
+          ... on SubmitQuestion {
+            question {
+              ... on MultipleChoiceQuestion {
+                text
+                options {
+                  key
+                  label
+                }
+              }
+            }
+          }
+           ... on GameStart {
+             gameId
+             gameToken
+             otherPlayers {
+               nickName
+             }
+           }
+           ... on GameOver {
+             finalScores {
+               nickName
+               score
+           }
+        }
+      }
+    }

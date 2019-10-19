@@ -1,0 +1,120 @@
+
+type GameState {
+  gameMode: String!
+  timeLeft: Int
+  gameTitle: String
+  gameDescription: String
+  currentQuestion: Question
+}
+
+type Quiz {
+  id: Int!
+  name: String!
+  description: String!
+  questions: [Question!]!
+}
+
+interface QuestionData {
+  id: Int!
+  text: String!
+}
+
+type Question {
+  title: String!
+  options: [ChoiceOption!]!
+}
+
+type ChoiceOption {
+  key: String!
+  label: String!
+}
+
+union GamePlayMessage  = TickTock | SubmitQuestion | GameStart | TurnOver | GameOver
+
+type TickTock {
+  timeLeft: Int
+}
+
+type GameStart {
+  gameId: Int!
+  gameToken: String!
+  otherPlayers: [Player!]
+}
+
+type SubmitQuestion  {
+  currentQuestion: Question!
+}
+
+input QuestionAnswerInput {
+  option: String!
+}
+
+enum GameMode {
+  IDLE
+  AWAITING_PLAYERS
+  AWAITING_QUESTIONS
+  AWAITING_ANSWERS
+  DISPLAYING_ANSWERS
+  DISPLAYING_FINAL_SCORE
+}
+
+type LeaderboardEntry {
+  nickName: String!
+  lastAnswer: String
+  lastAnswerCorrect: Boolean
+  lastAnswerPoints: Int
+  score: Int!
+}
+
+type PlayerScore {
+  nickName: String!
+  score: Int!
+}
+
+type TurnOver {
+  winningPlayers: [PlayerScore!]
+  leaderBoard: [LeaderboardEntry!]
+}
+
+type GameOver {
+  finalScores: [LeaderboardEntry!]
+}
+
+type Player {
+  nickName: String!
+}
+
+type User {
+  id: String!
+  roles: [String!]!
+}
+
+type RegistrationResponse {
+  nickName: String
+  token: String
+}
+
+type SignOnResponse {
+  user: User!
+  token: String!
+}
+
+type Query {
+  getQuizzes: [Quiz]
+  getQuiz(id: Int!): Quiz!
+  getGameState: GameState!
+  me: User
+  roles: [String!]
+}
+
+type Mutation {
+  answerQuestion(input: QuestionAnswerInput!): Boolean
+  registerPlayer(nickName: String! password: String!): RegistrationResponse!
+  registerUser(id: String! password: String!): SignOnResponse!
+}
+
+type Subscription {
+  nextMessage: GamePlayMessage
+  gameState: GameMode
+}
+

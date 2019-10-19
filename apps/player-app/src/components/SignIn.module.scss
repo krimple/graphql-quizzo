@@ -1,0 +1,28 @@
+h1 {
+  font-weight:bold;
+  padding-top:180px;
+  margin-bottom: 40px;
+}
+
+button:not(:disabled), [type="button"]:not(:disabled), [type="reset"]:not(:disabled), [type="submit"]:not(:disabled) {
+  background-color: #04AD69;
+  border: none;
+  color: #fff;
+  border-radius: 0px 0px;
+  padding: 40px 70px;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.signInSized {
+  font-size: 30px !important;
+}
+
+button.btn.btn-large.btn-outline-primary:hover {
+  background-color: #04AD69!important;
+}
+
+button.btn.btn-large.btn-outline-primary:active {
+  background-color: #04AD69!important;
+}

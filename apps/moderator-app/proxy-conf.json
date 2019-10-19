@@ -1,0 +1,11 @@
+{
+  "/graphql": {
+    "target": "http://spring:8080",
+    "secure": false
+  },
+  "/graphql-subscriptions": {
+    "target": "ws://spring:8080",
+    "websocket": "true",
+    "secure": false
+  }
+}

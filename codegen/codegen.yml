@@ -1,0 +1,20 @@
+overwrite: true
+schema:
+  ../servers/quizzo-graphql-java-server/src/main/resources/schema.graphqls
+documents: null
+generates:
+  ../apps/moderator-app/src/generated/graphql.ts:
+    plugins:
+      - "typescript-common"
+      - "typescript-server"
+  ../apps/dashboard-app/src/generated/graphql.ts:
+    plugins:
+      - "typescript-common"
+      - "typescript-server"
+  ../apps/player-app/src/generated/graphql.ts:
+    plugins:
+      - "typescript-common"
+      - "typescript-server"
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"

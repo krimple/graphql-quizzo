@@ -1,0 +1,6 @@
+type Mutation {
+    startRegistrations(quizId: Int!): Boolean
+    startGamePlay: Boolean
+    endTurn: Boolean
+    nextQuestion: Boolean
+}

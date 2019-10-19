@@ -1,0 +1,10 @@
+node_modules
+.idea
+.eclipse
+.project
+.cache
+.classpath
+.env
+.gradle
+keys
+

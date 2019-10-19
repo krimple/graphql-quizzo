@@ -1,0 +1,10 @@
+{
+  "presets": ["@babel/env", "@babel/preset-typescript"],
+  "plugins": [
+    "transform-class-properties",
+    ["@babel/plugin-transform-runtime", {
+      "regenerator": true,
+      "requireWildcard": true
+    }]
+  ]
+}

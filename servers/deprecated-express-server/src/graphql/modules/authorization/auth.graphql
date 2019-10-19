@@ -1,0 +1,29 @@
+type Player {
+  nickName: String!
+}
+
+type User {
+  id: String!
+  roles: [String!]!
+}
+
+type Query {
+  me: User
+  roles: [String!]
+}
+
+type RegistrationResponse {
+  nickName: String
+  token: String
+}
+
+type SignOnResponse {
+  user: User!
+  token: String!
+}
+
+type Mutation {
+  registerPlayer(nickName: String! password: String!): RegistrationResponse!
+  registerUser(id: String! password: String!): SignOnResponse!
+}
+

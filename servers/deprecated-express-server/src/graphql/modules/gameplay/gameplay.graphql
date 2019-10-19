@@ -1,0 +1,117 @@
+type Query {
+  getQuizzes: [Quiz]
+  getQuiz(id: Int!): Quiz!
+  getGameState: GameState!
+}
+
+type GameState {
+  quizId: Int
+  gameMode: String!
+}
+
+type Quiz {
+  id: Int!
+  name: String!
+  description: String!
+  questions: [Question!]!
+}
+
+interface QuestionData {
+  id: Int!
+  text: String!
+}
+
+enum ChoiceEnum {
+  A
+  B
+  C
+  D
+}
+
+union Question = MultipleChoiceQuestion | TrueFalseQuestion | FillInBlankQuestion
+
+type MultipleChoiceQuestion implements QuestionData {
+  id: Int!
+  text: String!
+  options: [ChoiceOption!]!
+}
+
+type ChoiceOption {
+  id: Int!
+  key: ChoiceEnum!
+  label: String!
+}
+
+type TrueFalseQuestion implements QuestionData {
+  id: Int!
+  text: String!
+}
+
+type FillInBlankQuestion implements QuestionData {
+  id: Int!
+  text: String!
+}
+
+type Subscription {
+  nextMessage: GamePlayMessage
+  gameState: GameMode
+}
+
+union GamePlayMessage  = TickTock | SubmitQuestion | GameStart | TurnOver | GameOver
+
+type TickTock {
+  timeLeft: Int
+}
+
+type GameStart {
+  gameId: Int!
+  gameToken: String!
+  otherPlayers: [Player!]
+}
+
+type SubmitQuestion  {
+  question: Question!
+}
+
+input QuestionAnswerInput {
+  answer: String!
+}
+
+enum GameMode {
+  IDLE
+  AWAITING_PLAYERS
+  AWAITING_QUESTIONS
+  AWAITING_ANSWERS
+  DISPLAYING_ANSWERS
+  DISPLAYING_FINAL_SCORE
+}
+
+type Mutation {
+  answerQuestion(input: QuestionAnswerInput!): Boolean
+}
+
+type Player {
+  nickName: String
+}
+
+type LeaderboardEntry {
+  nickName: String!
+  lastAnswer: String
+  lastAnswerCorrect: Boolean
+  lastAnswerPoints: Int
+  score: Int!
+}
+
+type PlayerScore {
+  nickName: String!
+  score: Int!
+}
+
+type TurnOver {
+  winningPlayers: [PlayerScore!]
+  leaderBoard: [LeaderboardEntry!]
+}
+
+type GameOver {
+  finalScores: [LeaderboardEntry!]
+}
