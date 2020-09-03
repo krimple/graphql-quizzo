@@ -14,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "graphql-code-generator": "^0.16.1",
+    "graphql-code-generator": "^0.18.2",
     "graphql-codegen-introspection": "^0.16.1",
     "graphql-codegen-typescript-server": "^0.16.1",
     "graphql": "^14.1.1"
